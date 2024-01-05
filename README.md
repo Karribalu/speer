@@ -92,3 +92,104 @@ We need to add some application properties before we start executing.
 <li><i>java -jar target/notes-0.0.1-SNAPSHOT.jar</i></li>
 <li>Booom! your application is started.</li>
 </ol>
+
+<h3> Example Curl commands for all APIs </h3>
+<h4>Authentication</h4>
+<ol>
+<li>POST /api/auth/signup</li>
+
+``` 
+curl -X POST -H "Content-Type: application/json" 
+-H "Accept: application/json" 
+-d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}' 
+http://localhost:8080/api/auth/signup 
+```
+<li>POST /api/auth/login</li>
+
+```
+curl -X POST -H "Content-Type: application/json" 
+-H "Accept: application/json" 
+-d '{"username":"test", "password": "securepassword"}' 
+http://localhost:8080/api/auth/login
+```
+<li>GET /api/notes: get a list of all notes for the authenticated user.</li>
+
+```
+curl -X GET \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw"
+http://localhost:8080/api/notes/
+
+```
+
+<li>GET /api/notes/:id: get a note by ID for the authenticated user.</li>
+
+```
+curl -X GET \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw"
+http://localhost:8080/api/notes/testId
+
+```
+
+<li>POST /api/notes: create a new note for the authenticated user.</li>
+
+```
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
+-d '{"title":"test title", "content": "test content"}' \
+http://localhost:8080/api/notes/
+
+```
+
+<li>PUT /api/notes/testId update an existing note by ID for the authenticated user.</li>
+
+```
+curl -X PUT \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
+-d '{"title":"test title", "content": "test content"}' \
+http://localhost:8080/api/notes/testId
+
+```
+
+<li>DELETE /api/notes/testId delete a note by ID for the authenticated user.</li>
+
+```
+curl -X DELETE \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
+http://localhost:8080/api/notes/testId
+
+```
+
+<li>POST /api/notes/testId/share  share a note with another user for the authenticated user.</li>
+
+```
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
+-d '{"username":"test"}' \
+http://localhost:8080/api/notes/testId/share
+
+```
+<li>GET /api/search?q=:query: search for notes based on keywords for the authenticated user. </li>
+We can add as many keywords as we want, : (colon) splitted, it will take as an OR query.
+
+```
+curl -X GET \
+-H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
+http://localhost:8080/api/search?q=lorem:ipsum
+
+```
+
+</ol>
