@@ -29,9 +29,10 @@
 
 <h3>Configuration setup</h3>
 We need to add some application properties before we start executing.
+
 <h4>MongoDB Cluster</h4>
 <span>We are using MongoDB atlas for this assignment.</span><br>
-<span>It is cloud version of MongoDB integrated with Elastic Search, so you dont have worry about setting it up in local.</span>
+<span>It is cloud version of MongoDB integrated with Elasticsearch, so you dont have worry about setting it up in local.</span>
 <h5>Steps to setup the MongoDB cluster and index creation</h5>
 <ol>
 <li>Create a free MongoDB Cluster following these steps <br/><a>https://www.mongodb.com/basics/clusters/mongodb-cluster-setup#:~:text=about%20storage%20capacity.-,Creating%20a%20MongoDB%20Cluster,-Depending%20on%20your</a></li>
@@ -43,9 +44,27 @@ We need to add some application properties before we start executing.
 <img src="readme-photos/collections.png"/>
 <li>click on Add My Own Data.</li>
 <li>Please enter your desired database name and in collections please enter <i>users</i></li>
+<li>Also create a collection for <i>notes</i> following the above steps, no data needed</li>
 <li>Hurray! Your MongoDB cluster is ready.</li>
 </ol>
 <br>
+
+<h4>MongoDB Search Index Creation </h4>
+<p>We are using search index to provide faster responses for content search in the notes.</p>
+<h5>Steps for creating the index</h5>
+<ol>
+<li>Given that you created the cluster and databases</li>
+<li>Please open Atlas search option after browsing collection </li>
+<img src="readme-photos/browse.png"/>
+<li>Follow the following steps, Please name your index as <i>search-index</i></li>
+<img src="readme-photos/index1.png"/>
+<img src="readme-photos/index2.png"/>
+<li>After these steps please click on create search index button</li>
+<li>Your index is created, and now we wait till the index creation gets into Active state like this</li>
+<img src="readme-photos/active.png"/>
+<li>We are using dynamic field mappings, so we don't need to add field mappings for indexes </li>
+</ol>
+
 <h4>Configuring application.yml for our app.</h4>
 <ol>
 <li>We need MongoDB cluster connection string to make a connection between our app and your cluster.</li>
@@ -62,6 +81,8 @@ We need to add some application properties before we start executing.
 </ol>
 <br/>
 <br/>
+
+
 <h3>Steps to run the app </h3>
 <ol>
 <li>Change the current directory to the repo and run.</li>
