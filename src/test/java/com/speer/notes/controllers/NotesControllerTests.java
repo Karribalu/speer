@@ -53,6 +53,13 @@ public class NotesControllerTests {
         when(notesService.createNotes(anyString(), any())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
         assertTrue(notesController.createNotes(headers, new CreateNotesDto("test", "test")).getStatusCode().is2xxSuccessful());
     }
+
+    @Test
+    public void testCreateNotesRateLimit(){
+        bucket.tryConsumeAndReturnRemaining(1);
+        when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
+        assertTrue(notesController.createNotes(headers, new CreateNotesDto("test", "test")).getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
+    }
     @Test
     public void testCreateNotesUnauthroized(){
         when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"false", "test"});
@@ -66,6 +73,12 @@ public class NotesControllerTests {
         assertTrue(notesController.getAllNotes(headers).getStatusCode().is2xxSuccessful());
     }
     @Test
+    public void testGetAllNotesRateLimit(){
+        bucket.tryConsumeAndReturnRemaining(1);
+        when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
+        assertTrue(notesController.getAllNotes(headers).getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
+    }
+    @Test
     public void testGetAllNotesUnauthorized(){
         when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"false", "test"});
         assertTrue(notesController.getAllNotes(headers).getStatusCode().is4xxClientError());
@@ -75,6 +88,12 @@ public class NotesControllerTests {
         when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
         when(notesService.getNotesById(anyString(), anyString())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
         assertTrue(notesController.getNotesById(headers, anyString()).getStatusCode().is2xxSuccessful());
+    }
+    @Test
+    public void testGetNotesByIdRateLimit(){
+        bucket.tryConsumeAndReturnRemaining(1);
+        when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
+        assertTrue(notesController.getNotesById(headers, anyString()).getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
     }
     @Test
     public void testGetNotesByIdUnauthorized(){
@@ -89,6 +108,12 @@ public class NotesControllerTests {
         assertTrue(notesController.shareNotes(headers, anyString(), new SharedUser("test")).getStatusCode().is2xxSuccessful());
     }
     @Test
+    public void testShareNotesRateLimit(){
+        bucket.tryConsumeAndReturnRemaining(1);
+        when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
+        assertTrue(notesController.shareNotes(headers, anyString(), new SharedUser("test")).getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
+    }
+    @Test
     public void testShareNotesUnauthorized(){
         when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"false", "test"});
         assertTrue(notesController.shareNotes(headers, anyString(), new SharedUser("test")).getStatusCode().is4xxClientError());
@@ -99,6 +124,12 @@ public class NotesControllerTests {
         when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
         when(notesService.updateNotesById(anyString(), anyString(), any())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
         assertTrue(notesController.updateNotesById(headers, anyString(), new CreateNotesDto("test", "test")).getStatusCode().is2xxSuccessful());
+    }
+    @Test
+    public void testUpdateNotesByIdRateLimit(){
+        bucket.tryConsumeAndReturnRemaining(1);
+        when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
+        assertTrue(notesController.updateNotesById(headers, anyString(), new CreateNotesDto("test", "test")).getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
     }
 
     @Test
@@ -112,6 +143,12 @@ public class NotesControllerTests {
         when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
         when(notesService.deleteNotesById(anyString(), anyString())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
         assertTrue(notesController.deleteNotesById(headers, anyString()).getStatusCode().is2xxSuccessful());
+    }
+    @Test
+    public void testDeleteNotesByIdRateLimit(){
+        bucket.tryConsumeAndReturnRemaining(1);
+        when(jwtUtils.authorizeToken(any())).thenReturn(new String[]{"true", "test"});
+        assertTrue(notesController.deleteNotesById(headers, anyString()).getStatusCode().isSameCodeAs(HttpStatus.TOO_MANY_REQUESTS));
     }
 
     @Test
