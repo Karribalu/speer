@@ -92,3 +92,8 @@ We need to add some application properties before we start executing.
 <li><i>java -jar target/notes-0.0.1-SNAPSHOT.jar</i></li>
 <li>Booom! your application is started.</li>
 </ol>
+
+
+``` 
+curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}' http://localhost:8080/api/auth/signup 
+```
