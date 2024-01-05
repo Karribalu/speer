@@ -102,15 +102,15 @@ We need to add some application properties before we start executing.
 ``` 
 curl -X POST -H "Content-Type: application/json" 
 -H "Accept: application/json" 
--d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}' 
+-d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}' \
 http://localhost:8080/api/auth/signup 
 ```
 <li>POST /api/auth/login</li>
 
 ```
-curl -X POST -H "Content-Type: application/json" 
--H "Accept: application/json" 
--d '{"username":"test", "password": "securepassword"}' 
+curl -X POST -H "Content-Type: application/json" \
+-H "Accept: application/json" \
+-d '{"username":"test", "password": "securepassword"}' \
 http://localhost:8080/api/auth/login
 ```
 <li>GET /api/notes: get a list of all notes for the authenticated user.</li>
@@ -119,7 +119,7 @@ http://localhost:8080/api/auth/login
 curl -X GET \
 -H "Content-Type: application/json" \
 -H "Accept: application/json" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw"
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
 http://localhost:8080/api/notes/
 
 ```
@@ -130,7 +130,7 @@ http://localhost:8080/api/notes/
 curl -X GET \
 -H "Content-Type: application/json" \
 -H "Accept: application/json" \
--H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw"
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
 http://localhost:8080/api/notes/testId
 
 ```
