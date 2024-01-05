@@ -93,6 +93,7 @@ We need to add some application properties before we start executing.
 <li>Booom! your application is started.</li>
 </ol>
 
+
 <h3> Example Curl commands for all APIs </h3>
 <h4>Authentication</h4>
 <ol>
