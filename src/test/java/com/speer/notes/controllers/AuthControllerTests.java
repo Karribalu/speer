@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AuthControllerTest {
+public class AuthControllerTests {
     @Mock
     private AuthService authService;
     @InjectMocks
