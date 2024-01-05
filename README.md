@@ -95,5 +95,7 @@ We need to add some application properties before we start executing.
 
 
 ``` 
-curl -X POST -H "Content-Type: application/json" -H "Accept: application/json" -d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}' http://localhost:8080/api/auth/signup 
+curl -X POST -H "Content-Type: application/json" -H "Accept: application/json"
+-d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}'
+http://localhost:8080/api/auth/signup 
 ```
