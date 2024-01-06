@@ -45,7 +45,6 @@ public class NotesController {
     }
 
     @GetMapping(path = "/",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllNotes(@RequestHeader HttpHeaders httpHeaders) {
         String[] authResponse = jwtUtils.authorizeToken(httpHeaders);
@@ -64,7 +63,6 @@ public class NotesController {
     }
 
     @GetMapping(path = "/{notesId}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getNotesById(@RequestHeader HttpHeaders httpHeaders, @PathVariable String notesId) {
         String[] authResponse = jwtUtils.authorizeToken(httpHeaders);
@@ -121,7 +119,6 @@ public class NotesController {
     }
 
     @DeleteMapping(path = "/{notesId}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteNotesById(@RequestHeader HttpHeaders httpHeaders, @PathVariable String notesId) {
         String[] authResponse = jwtUtils.authorizeToken(httpHeaders);

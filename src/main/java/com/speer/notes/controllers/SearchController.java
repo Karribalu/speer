@@ -27,7 +27,6 @@ public class SearchController {
     private RateLimitService rateLimitService;
 
     @GetMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getNotesById(@RequestHeader HttpHeaders httpHeaders, String q) {
         String[] authResponse = jwtUtils.authorizeToken(httpHeaders);
