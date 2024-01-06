@@ -29,7 +29,7 @@ public class AuthService {
     }
 
     public ResponseEntity<?> register(RegisterDto registerDto) {
-        Query query = new Query(Criteria.where("email").is(registerDto.getEmail()));
+        Query query = new Query(Criteria.where("username").is(registerDto.getUsername()));
         UserEntity user = mongoTemplate.findOne(query, UserEntity.class, "users");
         if (user != null) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("User Already registered"));

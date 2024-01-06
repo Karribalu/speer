@@ -100,11 +100,20 @@ We need to add some application properties before we start executing.
 <li>POST /api/auth/signup</li>
 
 ``` 
-curl -X POST -H "Content-Type: application/json" 
--H "Accept: application/json" 
+curl -X POST -H "Content-Type: application/json" \
+-H "Accept: application/json" \
 -d '{"username":"test", "email":"test@gmail.com", "password": "securepassword"}' \
 http://localhost:8080/api/auth/signup 
 ```
+
+<h5>Response for Signup </h5>
+```
+{
+    "message": "User Registered Successfully",
+    "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MiIsImV4cCI6MTcwNDY2NDk4OX0.lOYKDP7kQxGTIuSU2klfOaxjo0JONv4hOn--tP6f5Hw"
+}
+``` 
+<br>
 <li>POST /api/auth/login</li>
 
 ```
@@ -113,6 +122,17 @@ curl -X POST -H "Content-Type: application/json" \
 -d '{"username":"test", "password": "securepassword"}' \
 http://localhost:8080/api/auth/login
 ```
+
+<h5>Response for login </h5>
+```
+{
+    "message": "User Logged in Successfully",
+    "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MiIsImV4cCI6MTcwNDY2NDk4OX0.lOYKDP7kQxGTIuSU2klfOaxjo0JONv4hOn--tP6f5Hw"
+}
+``` 
+
+<br>
+
 <li>GET /api/notes: get a list of all notes for the authenticated user.</li>
 
 ```
@@ -123,6 +143,31 @@ curl -X GET \
 http://localhost:8080/api/notes/
 
 ```
+<h5>Response for Get All notes </h5>
+```
+[
+    {
+        "id": "6599cebc4b6c940d9d3f2931",
+        "username": "test2",
+        "title": "test title",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur, unde cupiditate dolorum, soluta doloribus aperiam alias tempora id optio odit corrupti eum consequuntur natus a officiis quidem eaque dolorem eos numquam. Veniam reiciendis alias aperiam facilis impedit nesciunt optio quae quisquam perferendis, iure, quod voluptates eveniet rerum culpa. Eligendi soluta, quis nihil similique sequi, voluptates consectetur sed laudantium sit numquam commodi ea iusto laborum quod culpa corrupti tenetur possimus illum inventore. Corporis, odio temporibus quos eveniet velit quas incidunt fugit nulla architecto vitae aut vel nam dolore sequi ad aspernatur corrupti reprehenderit debitis cumque commodi adipisci! Reiciendis, corporis asperiores.",
+        "sharedList": [],
+        "createdAt": "2024-01-06T22:05:48.037",
+        "updatedAt": "2024-01-06T22:05:48.038"
+    },
+    {
+        "id": "6599ced74b6c940d9d3f2932",
+        "username": "test2",
+        "title": "test title",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur, unde cupiditate dolorum, soluta doloribus aperiam alias tempora id optio odit corrupti eum consequuntur natus a officiis quidem eaque dolorem eos numquam. Veniam reiciendis alias aperiam facilis impedit nesciunt optio quae quisquam perferendis, iure, quod voluptates eveniet rerum culpa. Eligendi soluta, quis nihil similique sequi, voluptates consectetur sed laudantium sit numquam commodi ea iusto laborum quod culpa corrupti tenetur possimus illum inventore. Corporis, odio temporibus quos eveniet velit quas incidunt fugit nulla architecto vitae aut vel nam dolore sequi ad aspernatur corrupti reprehenderit debitis cumque commodi adipisci! Reiciendis, corporis asperiores.",
+        "sharedList": [],
+        "createdAt": "2024-01-06T22:06:15.209",
+        "updatedAt": "2024-01-06T22:06:15.209"
+    }
+]
+``` 
+
+<br>
 
 <li>GET /api/notes/:id: get a note by ID for the authenticated user.</li>
 
@@ -131,10 +176,25 @@ curl -X GET \
 -H "Content-Type: application/json" \
 -H "Accept: application/json" \
 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
-http://localhost:8080/api/notes/testId
+http://localhost:8080/api/notes/6599cebc4b6c940d9d3f2931
 
 ```
+<h5>Response for Get notes by ID </h5>
+```
+[
+    {
+        "id": "6599cebc4b6c940d9d3f2931",
+        "username": "test2",
+        "title": "test title",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur, unde cupiditate dolorum, soluta doloribus aperiam alias tempora id optio odit corrupti eum consequuntur natus a officiis quidem eaque dolorem eos numquam. Veniam reiciendis alias aperiam facilis impedit nesciunt optio quae quisquam perferendis, iure, quod voluptates eveniet rerum culpa. Eligendi soluta, quis nihil similique sequi, voluptates consectetur sed laudantium sit numquam commodi ea iusto laborum quod culpa corrupti tenetur possimus illum inventore. Corporis, odio temporibus quos eveniet velit quas incidunt fugit nulla architecto vitae aut vel nam dolore sequi ad aspernatur corrupti reprehenderit debitis cumque commodi adipisci! Reiciendis, corporis asperiores.",
+        "sharedList": [],
+        "createdAt": "2024-01-06T22:05:48.037",
+        "updatedAt": "2024-01-06T22:05:48.038"
+    }
+]
+``` 
 
+<br>
 <li>POST /api/notes: create a new note for the authenticated user.</li>
 
 ```
@@ -146,7 +206,23 @@ curl -X POST \
 http://localhost:8080/api/notes/
 
 ```
+<h5>Response for create Notes</h5>
+```
+{
+    "message": "Notes created successfully",
+    "notes": {
+        "id": "6599ced94b6c940d9d3f2934",
+        "username": "test2",
+        "title": "test title",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur, unde cupiditate dolorum, soluta doloribus aperiam alias tempora id optio odit corrupti eum consequuntur natus a officiis quidem eaque dolorem eos numquam. Veniam reiciendis alias aperiam facilis impedit nesciunt optio quae quisquam perferendis, iure, quod voluptates eveniet rerum culpa. Eligendi soluta, quis nihil similique sequi, voluptates consectetur sed laudantium sit numquam commodi ea iusto laborum quod culpa corrupti tenetur possimus illum inventore. Corporis, odio temporibus quos eveniet velit quas incidunt fugit nulla architecto vitae aut vel nam dolore sequi ad aspernatur corrupti reprehenderit debitis cumque commodi adipisci! Reiciendis, corporis asperiores.",
+        "sharedList": [],
+        "createdAt": "2024-01-06T22:06:17.536109",
+        "updatedAt": "2024-01-06T22:06:17.536135"
+    }
+}
+``` 
 
+<br>
 <li>PUT /api/notes/testId update an existing note by ID for the authenticated user.</li>
 
 ```
@@ -159,6 +235,23 @@ http://localhost:8080/api/notes/testId
 
 ```
 
+<h5>Response for Update Notes</h5>
+```
+{
+    "message": "Document updated successfully",
+    "notes": {
+        "id": "6599ce414b6c940d9d3f2930",
+        "username": "test2",
+        "title": "test title",
+        "content": "test title",
+        "sharedList": [],
+        "createdAt": "2024-01-06T22:03:45.598",
+        "updatedAt": "2024-01-06T22:11:20.878237"
+    }
+}
+``` 
+
+<br>
 <li>DELETE /api/notes/testId delete a note by ID for the authenticated user.</li>
 
 ```
@@ -169,6 +262,24 @@ curl -X DELETE \
 http://localhost:8080/api/notes/testId
 
 ```
+
+<h5>Response for Delete Notes</h5>
+```
+{
+    "message": "Document deleted successfully",
+    "notes": {
+        "id": "6599ce414b6c940d9d3f2930",
+        "username": "test2",
+        "title": "test title",
+        "content": "test title",
+        "sharedList": [],
+        "createdAt": "2024-01-06T22:03:45.598",
+        "updatedAt": "2024-01-06T22:11:20.878"
+    }
+}
+``` 
+
+<br>
 
 <li>POST /api/notes/testId/share  share a note with another user for the authenticated user.</li>
 the user you are sharing can only access the note by hitting the GET /api/notes/:id, but he will not get the notes when searches for all of his notes.
@@ -182,6 +293,26 @@ curl -X POST \
 http://localhost:8080/api/notes/testId/share
 
 ```
+
+<h5>Response for share Notes</h5>
+```
+{
+    "message": "Note having id 6599cebc4b6c940d9d3f2931is shared with user test",
+    "notes": {
+        "id": "6599cebc4b6c940d9d3f2931",
+        "username": "test2",
+        "title": "test title",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur, unde cupiditate dolorum, soluta doloribus aperiam alias tempora id optio odit corrupti eum consequuntur natus a officiis quidem eaque dolorem eos numquam. Veniam reiciendis alias aperiam facilis impedit nesciunt optio quae quisquam perferendis, iure, quod voluptates eveniet rerum culpa. Eligendi soluta, quis nihil similique sequi, voluptates consectetur sed laudantium sit numquam commodi ea iusto laborum quod culpa corrupti tenetur possimus illum inventore. Corporis, odio temporibus quos eveniet velit quas incidunt fugit nulla architecto vitae aut vel nam dolore sequi ad aspernatur corrupti reprehenderit debitis cumque commodi adipisci! Reiciendis, corporis asperiores.",
+        "sharedList": [
+            "test"
+        ],
+        "createdAt": "2024-01-06T22:05:48.037",
+        "updatedAt": "2024-01-06T22:12:49.499899"
+    }
+}
+``` 
+
+<br>
 <li>GET /api/search?q=:query: search for notes based on keywords for the authenticated user. </li>
 We can add as many keywords as we want, : (colon) split, it will take as an OR query.
 This query will also give highlights and its surrounding text.
@@ -192,6 +323,44 @@ curl -X GET \
 -H "Accept: application/json" \
 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNzA0NTUwMzA3fQ.o_oP_lQ3h1y4jISsLr6rlm7DyiRndVGPQ7R_jdGn-Cw" \
 http://localhost:8080/api/search?q=lorem:ipsum
+
+```
+
+<h5>Response for Text Search </h5>
+
+```
+   {
+        "_id": "6599ced94b6c940d9d3f2934",
+        "username": "test2",
+        "title": "test title",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet consequatur, unde cupiditate dolorum, soluta doloribus aperiam alias tempora id optio odit corrupti eum consequuntur natus a officiis quidem eaque dolorem eos numquam. Veniam reiciendis alias aperiam facilis impedit nesciunt optio quae quisquam perferendis, iure, quod voluptates eveniet rerum culpa. Eligendi soluta, quis nihil similique sequi, voluptates consectetur sed laudantium sit numquam commodi ea iusto laborum quod culpa corrupti tenetur possimus illum inventore. Corporis, odio temporibus quos eveniet velit quas incidunt fugit nulla architecto vitae aut vel nam dolore sequi ad aspernatur corrupti reprehenderit debitis cumque commodi adipisci! Reiciendis, corporis asperiores.",
+        "createdAt": "2024-01-06T22:06:17.536+00:00",
+        "updatedAt": "2024-01-06T22:06:17.536+00:00",
+        "highlights": [
+            {
+                "score": 5.81119966506958,
+                "path": "content",
+                "texts": [
+                    {
+                        "value": "Lorem",
+                        "type": "hit"
+                    },
+                    {
+                        "value": " ",
+                        "type": "text"
+                    },
+                    {
+                        "value": "ipsum",
+                        "type": "hit"
+                    },
+                    {
+                        "value": " dolor sit amet, consectetur adipisicing elit. ",
+                        "type": "text"
+                    }
+                ]
+            }
+        ]
+    }
 
 ```
 
