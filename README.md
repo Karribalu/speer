@@ -107,12 +107,14 @@ http://localhost:8080/api/auth/signup
 ```
 
 <h5>Response for Signup </h5>
+
 ```
 {
     "message": "User Registered Successfully",
     "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MiIsImV4cCI6MTcwNDY2NDk4OX0.lOYKDP7kQxGTIuSU2klfOaxjo0JONv4hOn--tP6f5Hw"
 }
 ``` 
+
 <br>
 <li>POST /api/auth/login</li>
 
@@ -124,6 +126,7 @@ http://localhost:8080/api/auth/login
 ```
 
 <h5>Response for login </h5>
+
 ```
 {
     "message": "User Logged in Successfully",
@@ -144,6 +147,7 @@ http://localhost:8080/api/notes/
 
 ```
 <h5>Response for Get All notes </h5>
+
 ```
 [
     {
@@ -180,6 +184,7 @@ http://localhost:8080/api/notes/6599cebc4b6c940d9d3f2931
 
 ```
 <h5>Response for Get notes by ID </h5>
+
 ```
 [
     {
@@ -207,6 +212,7 @@ http://localhost:8080/api/notes/
 
 ```
 <h5>Response for create Notes</h5>
+
 ```
 {
     "message": "Notes created successfully",
@@ -236,6 +242,7 @@ http://localhost:8080/api/notes/testId
 ```
 
 <h5>Response for Update Notes</h5>
+
 ```
 {
     "message": "Document updated successfully",
@@ -264,6 +271,7 @@ http://localhost:8080/api/notes/testId
 ```
 
 <h5>Response for Delete Notes</h5>
+
 ```
 {
     "message": "Document deleted successfully",
@@ -295,6 +303,7 @@ http://localhost:8080/api/notes/testId/share
 ```
 
 <h5>Response for share Notes</h5>
+
 ```
 {
     "message": "Note having id 6599cebc4b6c940d9d3f2931is shared with user test",
