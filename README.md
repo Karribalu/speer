@@ -171,6 +171,7 @@ http://localhost:8080/api/notes/testId
 ```
 
 <li>POST /api/notes/testId/share  share a note with another user for the authenticated user.</li>
+the user you are sharing can only access the note by hitting the GET /api/notes/:id, but he will not get the notes when searches for all of his notes.
 
 ```
 curl -X POST \
@@ -182,7 +183,8 @@ http://localhost:8080/api/notes/testId/share
 
 ```
 <li>GET /api/search?q=:query: search for notes based on keywords for the authenticated user. </li>
-We can add as many keywords as we want, : (colon) splitted, it will take as an OR query.
+We can add as many keywords as we want, : (colon) split, it will take as an OR query.
+This query will also give highlights and its surrounding text.
 
 ```
 curl -X GET \
